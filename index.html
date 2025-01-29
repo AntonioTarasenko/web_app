@@ -49,9 +49,7 @@
 
     <script>
         const tg = window.Telegram.WebApp;
-        tg.expand(); // Разворачиваем Web App на весь экран
-        tg.MainButton.text = "Отправить анкету";
-        tg.MainButton.show(); // Показываем кнопку отправки
+        tg.expand(); // Разворачиваем Web App
 
         document.getElementById('form').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -62,11 +60,12 @@
                 time: document.getElementById('time').value
             };
 
-            console.log("Отправка данных:", data); // Проверяем в консоли браузера
-            tg.sendData(JSON.stringify(data)); // Отправка данных в Telegram
+            console.log("📤 Отправка данных в Telegram:", data); // Лог в консоль браузера
+            tg.sendData(JSON.stringify(data)); // Отправляем данные боту
 
-            tg.MainButton.hide(); // Скрываем кнопку после отправки
-            setTimeout(() => tg.close(), 2000); // Закрываем Web App через 2 сек
+            setTimeout(() => {
+                tg.close(); // Закрываем Web App через 2 секунды
+            }, 2000);
         });
     </script>
 </body>
